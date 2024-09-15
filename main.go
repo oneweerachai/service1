@@ -1,10 +1,14 @@
 package main
 
-import "fmt"
-import  log "github.com/oneweerachai/shared-logger"
+import (
+	"fmt"
+
+	log "github.com/oneweerachai/shared-logger"
+	"go.uber.org/zap/zapcore"
+)
 
 func main() {
-	logger,err := log.NewLogger()
+	logger,err := log.NewLoggerWithConfig(zapcore.DebugLevel)
 
 	defer logger.Sync()
 
@@ -14,4 +18,5 @@ func main() {
 	fmt.Println("Hello")
 
 	logger.Info("Hello, shared logger")
+	logger.Debug("h debug")
 }
